@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import useApi from '@/services/api'
 import type { Product } from '../types/products'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 export const useProductStore = defineStore('productStore', () => {
@@ -9,7 +9,10 @@ export const useProductStore = defineStore('productStore', () => {
   const router = useRouter()
 
   const products = ref<Product[]>([])
-  const isLoading = ref<boolean>(false)
+  const selectedCategory = ref<string[]>([])
+  const sortBy = ref<string>('')
+
+  const isLoading = ref<boolean>(true)
 
   const getProductList = async () => {
     try {
@@ -38,5 +41,49 @@ export const useProductStore = defineStore('productStore', () => {
     return product
   }
 
-  return { products, isLoading, getProductList, getProductById }
+  const filteredProducts = computed(() => {
+    const productsList = products?.value || []
+
+    if (selectedCategory.value.length === 0) {
+      return productsList
+    }
+
+    const filtered = productsList.filter((product) =>
+      selectedCategory.value.includes(product.category),
+    )
+
+    return filtered
+  })
+
+  const sortedProducts = computed(() => {
+    const list = [...filteredProducts.value]
+
+    switch (sortBy.value) {
+      case 'name-asc':
+        return list.sort((a, b) => a.name.localeCompare(b.name))
+      case 'name-desc':
+        return list.sort((a, b) => b.name.localeCompare(a.name))
+      case 'price-asc':
+        return list.sort((a, b) => a.price - b.price)
+      case 'price-desc':
+        return list.sort((a, b) => b.price - a.price)
+      default:
+        return list
+    }
+  })
+
+  const resetFilters = () => {
+    selectedCategory.value = []
+  }
+
+  return {
+    products,
+    isLoading,
+    sortedProducts,
+    selectedCategory,
+    sortBy,
+    getProductList,
+    getProductById,
+    resetFilters,
+  }
 })

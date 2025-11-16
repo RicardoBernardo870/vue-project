@@ -139,6 +139,146 @@
       "price": 3.99,
       "category": "Sensors",
       "description": "Detects AC or DC current levels safely using magnetic measurement."
+    },
+    {
+      "id": 21,
+      "name": "Infrared Distance Sensor 2–10cm",
+      "price": 2.8,
+      "category": "Sensors",
+      "description": "Short-range IR proximity sensor used for collision detection."
+    },
+    {
+      "id": 22,
+      "name": "Microphone Sound Sensor Module",
+      "price": 1.6,
+      "category": "Sensors",
+      "description": "Detects sound levels for clapping or noise-triggered actions."
+    },
+    {
+      "id": 23,
+      "name": "CO2 Gas Sensor Module",
+      "price": 12.5,
+      "category": "Sensors",
+      "description": "Measures carbon dioxide levels for indoor air quality projects."
+    },
+    {
+      "id": 24,
+      "name": "Fingerprint Sensor Board",
+      "price": 15.2,
+      "category": "Sensors",
+      "description": "Biometric fingerprint reader for secure authentication."
+    },
+    {
+      "id": 25,
+      "name": "Arduino Mega 2560 R3",
+      "price": 28.5,
+      "category": "Microcontrollers",
+      "description": "Large-I/O Arduino-compatible board ideal for complex builds."
+    },
+    {
+      "id": 26,
+      "name": "Teensy 4.0 Microcontroller",
+      "price": 21.99,
+      "category": "Microcontrollers",
+      "description": "Ultra-fast MCU for advanced audio, robotics, and DSP systems."
+    },
+    {
+      "id": 27,
+      "name": "RISC-V Dev Board",
+      "price": 18.9,
+      "category": "Microcontrollers",
+      "description": "Open-source architecture development board for research use."
+    },
+    {
+      "id": 28,
+      "name": "Coin Cell Battery Holder With Leads",
+      "price": 0.75,
+      "category": "Power",
+      "description": "Battery mount for CR2032 and small low-power circuits."
+    },
+    {
+      "id": 29,
+      "name": "USB 5V Power Distribution Board",
+      "price": 4.25,
+      "category": "Power",
+      "description": "Powers multiple modules safely from a single USB source."
+    },
+    {
+      "id": 30,
+      "name": "Super Capacitor 5.5V 1F",
+      "price": 2.95,
+      "category": "Power",
+      "description": "Energy storage component suitable for RTC memory backup."
+    },
+    {
+      "id": 31,
+      "name": "GPS Receiver Module",
+      "price": 11.4,
+      "category": "Sensors",
+      "description": "Accurate global positioning module for tracking devices."
+    },
+    {
+      "id": 32,
+      "name": "UV Radiation Sensor",
+      "price": 8.1,
+      "category": "Sensors",
+      "description": "Detects ultraviolet light for outdoor and safety monitoring."
+    },
+    {
+      "id": 33,
+      "name": "STM32 Nucleo Board",
+      "price": 19.8,
+      "category": "Microcontrollers",
+      "description": "Official ARM microcontroller board with onboard debugger."
+    },
+    {
+      "id": 34,
+      "name": "ATtiny85 Mini USB Dev Board",
+      "price": 4.7,
+      "category": "Microcontrollers",
+      "description": "Tiny microcontroller for compact embedded control systems."
+    },
+    {
+      "id": 35,
+      "name": "3.7V Li-Po Battery 500mAh",
+      "price": 3.6,
+      "category": "Power",
+      "description": "Rechargeable battery for portable and wearable electronics."
+    },
+    {
+      "id": 36,
+      "name": "DC-DC Programmable Module",
+      "price": 6.9,
+      "category": "Power",
+      "description": "Programmable voltage regulator with LED readout."
+    },
+    {
+      "id": 37,
+      "name": "MQ-3 Alcohol Sensor",
+      "price": 4.3,
+      "category": "Sensors",
+      "description": "Detects alcohol concentration in gas form for safety systems."
+    },
+    {
+      "id": 38,
+      "name": "Heart Rate Pulse Sensor",
+      "price": 3.95,
+      "category": "Sensors",
+      "description": "Optical sensor for biological pulse monitoring."
+    },
+    {
+      "id": 39,
+      "name": "ESP32-S3 AI IoT Board",
+      "price": 14.5,
+      "category": "Microcontrollers",
+      "description": "Enhanced ESP32 version with built-in AI acceleration features."
+    },
+    {
+      "id": 40,
+      "name": "Power MOSFET Driver Module",
+      "price": 2.45,
+      "category": "Power",
+      "description": "Efficient driver module for switching high-current loads."
     }
   ]
 }

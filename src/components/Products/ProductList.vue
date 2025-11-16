@@ -11,10 +11,11 @@ import Button from 'primevue/button'
 import ProductCard from './ProductCard.vue'
 
 const productStore = useProductStore()
-const { sortOptions } = useProductOptions()
 
 const { getProductList } = productStore
-const { products, isLoading } = storeToRefs(productStore)
+const { sortedProducts, isLoading, sortBy } = storeToRefs(productStore)
+
+const { sortOptions } = useProductOptions()
 
 const openFilters = ref<boolean>(false)
 
@@ -32,17 +33,21 @@ onMounted(async () => {
         :icon="openFilters ? 'pi pi-filter-slash' : 'pi pi-filter'"
         @click="openFilters = !openFilters"
       />
+
       <Select
+        v-model="sortBy"
         class="sort-select"
+        show-clear
         :options="sortOptions"
         placeholder="Sort"
         option-label="label"
         option-value="value"
       />
     </template>
-    <div v-if="!isLoading && products.length" class="product-grid">
+
+    <div v-if="!isLoading && sortedProducts.length" class="product-grid">
       <ProductCard
-        v-for="product in products"
+        v-for="product in sortedProducts"
         :id="product.id"
         :key="product.id"
         :name="product.name"

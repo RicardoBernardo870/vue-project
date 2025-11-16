@@ -2,6 +2,8 @@
 import Card from 'primevue/card'
 import { useProductOptions } from '@/composables/useProductOptions'
 import { Button, Checkbox } from 'primevue'
+import { storeToRefs } from 'pinia'
+import { useProductStore } from '@/stores/useProductStore'
 
 type Emits = {
   (e: 'onClose'): void
@@ -9,7 +11,16 @@ type Emits = {
 
 const emit = defineEmits<Emits>()
 
+const productStore = useProductStore()
+
 const { categoryOptions } = useProductOptions()
+const { resetFilters } = productStore
+const { selectedCategory } = storeToRefs(productStore)
+
+const closeFilterBar = () => {
+  emit('onClose')
+  resetFilters()
+}
 </script>
 
 <template>
@@ -21,7 +32,7 @@ const { categoryOptions } = useProductOptions()
           icon="pi pi-times"
           severity="secondary"
           class="close-button"
-          @click="emit('onClose')"
+          @click="closeFilterBar"
         />
         <h3>Product Filters</h3>
       </template>
@@ -34,7 +45,12 @@ const { categoryOptions } = useProductOptions()
           :key="category.value"
           class="checkbox-options"
         >
-          <Checkbox :inputId="category.value" name="category" :value="category.value" />
+          <Checkbox
+            v-model="selectedCategory"
+            :inputId="category.value"
+            name="category"
+            :value="category.value"
+          />
           <label :for="category.value">{{ category.label }}</label>
         </div>
       </template>

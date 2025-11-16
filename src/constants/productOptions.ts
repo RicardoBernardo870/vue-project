@@ -1,7 +1,7 @@
 export const CATEGORY_OPTIONS = [
-  { label: 'Sensors', value: 'sensors' },
-  { label: 'Microcontrollers', value: 'microcontrollers' },
-  { label: 'Power', value: 'power' },
+  { label: 'Sensors', value: 'Sensors' },
+  { label: 'Microcontrollers', value: 'Microcontrollers' },
+  { label: 'Power', value: 'Power' },
 ] as const
 
 export const SORT_OPTIONS = [

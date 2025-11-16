@@ -9,7 +9,6 @@ const props = defineProps<Product>()
 <template>
   <Card class="product-card">
     <template #title>
-      <Button icon="pi pi-trash" severity="danger" size="small" />
       <h3>{{ props.name }}</h3>
     </template>
 
@@ -25,6 +24,7 @@ const props = defineProps<Product>()
     </template>
 
     <template #footer>
+      <Button icon="pi pi-trash" severity="danger" size="small" />
       <RouterLink :to="`/product/${props.id}`">
         <Button label="View Details" />
       </RouterLink>
@@ -53,7 +53,7 @@ const props = defineProps<Product>()
   .p-card-footer {
     display: flex;
     align-items: flex-end;
-    justify-content: flex-end;
+    justify-content: space-between;
   }
 }
 </style>
