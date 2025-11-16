@@ -1,0 +1,59 @@
+<script setup lang="ts">
+import Card from 'primevue/card'
+import Button from 'primevue/button'
+import type { Product } from '@/types/products'
+
+const props = defineProps<Product>()
+</script>
+
+<template>
+  <Card class="product-card">
+    <template #title>
+      <Button icon="pi pi-trash" severity="danger" size="small" />
+      <h3>{{ props.name }}</h3>
+    </template>
+
+    <template #content>
+      <p>
+        <span>Price:</span>
+        {{ props.price }}
+      </p>
+      <p>
+        <span>Category:</span>
+        {{ props.category }}
+      </p>
+    </template>
+
+    <template #footer>
+      <RouterLink :to="`/product/${props.id}`">
+        <Button label="View Details" />
+      </RouterLink>
+    </template>
+  </Card>
+</template>
+
+<style lang="css" scoped>
+.product-card {
+  height: 100%;
+}
+.product-card :deep(.p-card-body) {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+
+  p {
+    margin: 0.25rem 0;
+  }
+
+  span {
+    font-weight: bold;
+  }
+
+  .p-card-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+}
+</style>

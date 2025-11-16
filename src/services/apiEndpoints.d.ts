@@ -1,5 +1,7 @@
+import type { Product } from '@/types/products'
+
 type ApiEndpoints = {
   '/products': Product[]
-  '/product': Product
 }
+
 export default ApiEndpoints

@@ -6,7 +6,7 @@ const axiosInstance = axios.create({
   baseURL: 'http://localhost:4000/',
 })
 
-const useApi = {
+const useApi = () => ({
   get: <K extends keyof ApiEndpoints>(url: K): Promise<AxiosResponse<ApiEndpoints[K]>> =>
     axiosInstance.get(url),
   post: <K extends keyof ApiEndpoints>(
@@ -19,6 +19,6 @@ const useApi = {
   ): Promise<AxiosResponse<ApiEndpoints[K]>> => axiosInstance.put(url, data),
   delete: <K extends keyof ApiEndpoints>(url: K): Promise<AxiosResponse<ApiEndpoints[K]>> =>
     axiosInstance.delete(url),
-}
+})
 
 export default useApi

@@ -1,145 +1,144 @@
 {
   "products": [
-    { "id": 1, "name": "Resistor 10kΩ", "price": 0.1, "category": "Resistors", "stock": 500 },
-
+    {
+      "id": 1,
+      "name": "Temperature Sensor DS18B20",
+      "price": 3.2,
+      "category": "Sensors",
+      "description": "Digital temperature sensor suitable for waterproof or indoor monitoring."
+    },
     {
       "id": 2,
-      "name": "Capacitor 100µF 16V",
-      "price": 0.15,
-      "category": "Capacitors",
-      "stock": 320
+      "name": "PIR Motion Sensor Module",
+      "price": 2.1,
+      "category": "Sensors",
+      "description": "Detects infrared motion for security and automation projects."
     },
-    { "id": 3, "name": "LED 5mm Red", "price": 0.05, "category": "LEDs", "stock": 1000 },
+    {
+      "id": 3,
+      "name": "ESP8266 WiFi Module",
+      "price": 5.85,
+      "category": "Microcontrollers",
+      "description": "Low-cost WiFi microcontroller for IoT and wireless control."
+    },
     {
       "id": 4,
-      "name": "Arduino Uno R3",
-      "price": 24.99,
+      "name": "Arduino Nano CH340",
+      "price": 12.99,
       "category": "Microcontrollers",
-      "stock": 45
+      "description": "Compact microcontroller board ideal for breadboard prototyping."
     },
-    { "id": 5, "name": "Soldering Iron 60W", "price": 12.5, "category": "Tools", "stock": 70 },
+    {
+      "id": 5,
+      "name": "5V Step Down Converter",
+      "price": 1.7,
+      "category": "Power",
+      "description": "Converts higher DC voltage to a stable 5V output for electronics."
+    },
     {
       "id": 6,
-      "name": "Jumper Wires (Male-Male 40pcs)",
-      "price": 2.49,
-      "category": "Cables",
-      "stock": 300
+      "name": "Hall Effect Sensor A3144",
+      "price": 0.9,
+      "category": "Sensors",
+      "description": "Magnetic field detection module used in speed or position systems."
     },
     {
       "id": 7,
-      "name": "Raspberry Pi 4 - 4GB",
-      "price": 79.9,
-      "category": "Single Board Computers",
-      "stock": 25
+      "name": "ESP32-WROOM Dev Board",
+      "price": 9.99,
+      "category": "Microcontrollers",
+      "description": "Powerful dual-core WiFi and Bluetooth microcontroller development board."
     },
-    { "id": 8, "name": "Diode 1N4007", "price": 0.03, "category": "Diodes", "stock": 1500 },
+    {
+      "id": 8,
+      "name": "DHT11 Temperature & Humidity",
+      "price": 1.5,
+      "category": "Sensors",
+      "description": "Basic sensor module that measures temperature and humidity."
+    },
     {
       "id": 9,
-      "name": "NPN Transistor BC547",
-      "price": 0.08,
-      "category": "Transistors",
-      "stock": 900
+      "name": "Solar Power Module Mini 5V",
+      "price": 3.8,
+      "category": "Power",
+      "description": "Small solar panel for powering low-consumption outdoor projects."
     },
-    { "id": 10, "name": "Relay 5V 10A", "price": 1.95, "category": "Relays", "stock": 180 },
-
+    {
+      "id": 10,
+      "name": "Lithium Battery Charger TP4056",
+      "price": 1.35,
+      "category": "Power",
+      "description": "Charging controller for 18650 lithium batteries with USB input."
+    },
     {
       "id": 11,
-      "name": "Potentiometer 10k Linear",
-      "price": 0.65,
-      "category": "Potentiometers",
-      "stock": 280
+      "name": "LDR Photoresistor Light Sensor",
+      "price": 0.25,
+      "category": "Sensors",
+      "description": "Light-dependent resistor used for brightness measuring circuits."
     },
     {
       "id": 12,
-      "name": "OLED Screen 0.96-inch I2C",
-      "price": 6.5,
-      "category": "Displays",
-      "stock": 90
+      "name": "ATmega32A Microcontroller",
+      "price": 4.6,
+      "category": "Microcontrollers",
+      "description": "8-bit AVR microcontroller widely used in custom embedded systems."
     },
-    { "id": 13, "name": "DC Motor 6V", "price": 2.2, "category": "Motors", "stock": 140 },
+    {
+      "id": 13,
+      "name": "Barometric Sensor BMP180",
+      "price": 2.4,
+      "category": "Sensors",
+      "description": "Measures altitude and atmospheric pressure with high precision."
+    },
     {
       "id": 14,
-      "name": "Stepper Motor + Driver Kit",
-      "price": 9.99,
-      "category": "Motors",
-      "stock": 60
+      "name": "Mini UPS 5V Backup Module",
+      "price": 6.4,
+      "category": "Power",
+      "description": "Provides small power backup during outages for tiny electronics."
     },
     {
       "id": 15,
-      "name": "Heat Shrink Tubing Assortment",
-      "price": 3.8,
-      "category": "Accessories",
-      "stock": 200
+      "name": "Soil Moisture Sensor Module",
+      "price": 0.95,
+      "category": "Sensors",
+      "description": "Analyzes soil moisture levels for plant and irrigation automation."
     },
     {
       "id": 16,
-      "name": "Breadboard 830 Point",
-      "price": 2.75,
-      "category": "Prototyping",
-      "stock": 100
+      "name": "STM32 Blue Pill Board",
+      "price": 7.95,
+      "category": "Microcontrollers",
+      "description": "Affordable ARM Cortex-M development board for advanced projects."
     },
     {
       "id": 17,
-      "name": "ESP32 Dev Board",
-      "price": 9.5,
-      "category": "Microcontrollers",
-      "stock": 65
+      "name": "RFID 13.56MHz Sensor Module",
+      "price": 4.1,
+      "category": "Sensors",
+      "description": "Reads RFID tags for access control and identification systems."
     },
     {
       "id": 18,
-      "name": "Lithium Battery 18650 (3000mAh)",
-      "price": 4.8,
-      "category": "Batteries",
-      "stock": 130
+      "name": "Boost Converter 3.3/5V",
+      "price": 1.8,
+      "category": "Power",
+      "description": "Small power booster that raises voltage output for small circuits."
     },
-    { "id": 19, "name": "USB Type-C Cable 1m", "price": 3.2, "category": "Cables", "stock": 210 },
+    {
+      "id": 19,
+      "name": "PIC16F877A Microcontroller",
+      "price": 6.5,
+      "category": "Microcontrollers",
+      "description": "Reliable PIC microcontroller suited for industry and educational use."
+    },
     {
       "id": 20,
-      "name": "ATmega328P IC",
-      "price": 2.9,
-      "category": "Integrated Circuits",
-      "stock": 150
-    },
-
-    {
-      "id": 21,
-      "name": "Voltage Booster Module 5V",
-      "price": 1.75,
-      "category": "Power Modules",
-      "stock": 110
-    },
-    { "id": 22, "name": "Micro SD Card Module", "price": 2.1, "category": "Storage", "stock": 85 },
-    { "id": 23, "name": "USB Soldering Iron", "price": 8.9, "category": "Tools", "stock": 50 },
-    {
-      "id": 24,
-      "name": "LCD Display 16x2 (I2C)",
-      "price": 4.25,
-      "category": "Displays",
-      "stock": 120
-    },
-    {
-      "id": 25,
-      "name": "Female Header Pins (40pcs)",
-      "price": 1.1,
-      "category": "Connectors",
-      "stock": 450
-    },
-    { "id": 26, "name": "Servo Motor SG90", "price": 3.5, "category": "Motors", "stock": 200 },
-    {
-      "id": 27,
-      "name": "USB Power Supply 5V 2A",
-      "price": 4.99,
-      "category": "Power Supplies",
-      "stock": 85
-    },
-    {
-      "id": 28,
-      "name": "Capacitive Touch Sensor",
-      "price": 1.2,
+      "name": "Current Sensor ACS712",
+      "price": 3.99,
       "category": "Sensors",
-      "stock": 95
-    },
-    { "id": 29, "name": "Thermistor NTC 10k", "price": 0.12, "category": "Sensors", "stock": 600 },
-    { "id": 30, "name": "WiFi Antenna", "price": 2.6, "category": "Networking", "stock": 75 }
+      "description": "Detects AC or DC current levels safely using magnetic measurement."
+    }
   ]
 }
