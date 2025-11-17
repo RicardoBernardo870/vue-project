@@ -62,8 +62,6 @@ src/
 npm run test:unit
 ```
 
-Tests use Vitest and cover the store logic and key components.
-
 ## Other Commands
 
 ```sh
