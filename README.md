@@ -1,54 +1,76 @@
-# vue-project
+# Product Management App
 
-This template should help get you started developing with Vue 3 in Vite.
+This is an app that allows users to add, remove, and edit items. I tried to keep it simple, but I also added a few features to showcase my Vue skills. For example, a sidebar with filters and a dedicated mobile filter modal using a custom breakpoint composable and shared store state.
 
-## Recommended IDE Setup
+All items can be sorted and filtered by category. For adding items, I used a modal, and for editing I used the Vue Router with a separate page to demonstrate routing usage.
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+For the data layer, I used JSON Server to simulate real API calls, and added basic success and error handling to make it feel more realistic. I later noticed JSON Server has sort capabilities, but since I wasn’t aware at the start, I handled sorting and filtering using computed properties.
 
-## Recommended Browser Setup
+For the UI, I chose PrimeVue as a small challenge and to work with ready-made components. I also decided not to use Tailwind so I could focus on writing my own vanilla CSS and show how I handle styling and layout from scratch.
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+## Stack
 
-## Type Support for `.vue` Imports in TS
+- Vue 3 + TypeScript
+- Pinia for state management
+- PrimeVue for UI components
+- Vee-validate + Zod for forms
+- Vitest for testing
+- JSON Server for mock API
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+## Setup
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+Start the mock API:
+
+```sh
+npx json-server db.json
+```
+
+Run dev server (separate terminal):
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+## Project Structure
 
-```sh
-npm run build
+```
+src/
+├── components/      # UI components organized by feature
+├── pages/          # Route components
+├── stores/         # Pinia stores
+├── composables/    # Reusable composition functions
+├── services/       # API calls
+├── types/          # TypeScript definitions
+└── __tests__/      # Unit tests
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+**Composition API** - Better TypeScript support and code reusability
+
+**Pinia** - Simpler than Vuex, works well with composition API
+
+**Feature-based components** - Keeps related files together (e.g., `Products/ProductForm/`, `Products/ProductList/`)
+
+**Optimistic updates** - UI updates immediately, rolls back on errors
+
+**Client-side caching** - Reduces API calls, invalidated on mutations
+
+**Vee-validate + Zod** - Type-safe form validation with schema definitions
+
+## Testing
 
 ```sh
 npm run test:unit
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+Tests use Vitest and cover the store logic and key components.
+
+## Other Commands
 
 ```sh
-npm run lint
+npm run build      # Production build
+npm run lint       # Run ESLint
 ```
