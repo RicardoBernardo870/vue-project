@@ -4,7 +4,7 @@ import { useProductStore } from '@/stores/useProductStore'
 import { Select, Checkbox } from 'primevue'
 import { storeToRefs } from 'pinia'
 
-import ModalComponent from '../ModalComponent.vue'
+import ModalComponent from '../../ModalComponent.vue'
 
 type Props = {
   position?: 'bottom' | ''
