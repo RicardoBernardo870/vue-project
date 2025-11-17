@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { InputText, InputNumber, Textarea, Button, Select } from 'primevue'
-import { computed, watch, ref } from 'vue'
+import { watch, ref } from 'vue'
 import { useProductStore } from '@/stores/useProductStore'
 import { useRoute } from 'vue-router'
 import { useForm } from 'vee-validate'
@@ -17,7 +17,13 @@ type Props = {
   mode: 'create' | 'edit'
 }
 
+type Emits = {
+  (e: 'success'): void
+}
+
 const props = defineProps<Props>()
+const emit = defineEmits<Emits>()
+
 const route = useRoute()
 
 const productStore = useProductStore()
@@ -28,14 +34,11 @@ const { categoryOptions } = useProductOptions()
 const submitAttempted = ref<boolean>(false)
 const validationSchema = toTypedSchema(ProductFormFields(Zod))
 
-const getInitialValuesComputed = computed(() => {
-  return getInitialValues(props.product || null)
-})
-
 const { handleSubmit, values, meta, setFieldValue, errors, isSubmitting, resetForm } =
   useForm<Product>({
     validationSchema,
-    initialValues: getInitialValuesComputed.value,
+    validateOnMount: false,
+    initialValues: getInitialValues(props.product || null),
   })
 
 const showError = (field: keyof Product) => {
@@ -47,16 +50,17 @@ const onSubmit = handleSubmit(
     try {
       if (props.mode === 'edit') {
         await editProduct(Number(route.params.id), values)
+        await router.push('/dashboard')
       } else {
         await addNewProduct(values)
+        emit('success')
       }
 
       resetForm({
-        values: getInitialValuesComputed.value,
+        values: getInitialValues(props.product || null),
       })
 
       submitAttempted.value = false
-      await router.push('/dashboard')
     } catch (error) {
       console.error('Form submission error:', error)
     }

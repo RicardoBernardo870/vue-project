@@ -26,6 +26,6 @@ const visible = defineModel<boolean>('visible', { required: true })
 
 <style lang="css">
 .p-dialog-content {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 </style>

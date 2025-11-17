@@ -62,7 +62,7 @@ onMounted(async () => {
   </PanelLayout>
 
   <ModalComponent v-model:visible="openModal" header="Add Product">
-    <ProductForm mode="create" />
+    <ProductForm mode="create" @success="openModal = false" />
   </ModalComponent>
 </template>
 
