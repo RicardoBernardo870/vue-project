@@ -21,7 +21,7 @@ For the UI, I chose PrimeVue as a small challenge and to work with ready-made co
 
 Vite requires Node.js version 20.19+ or 22.12+
 
-If you encounter errors regarding vee-validate/zod run pnpm install
+If you encounter errors regarding vee-validate/zod run npm install --force
 
 ```sh
 npm install
