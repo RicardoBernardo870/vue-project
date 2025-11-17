@@ -19,8 +19,16 @@ For the UI, I chose PrimeVue as a small challenge and to work with ready-made co
 
 ## Setup
 
+Vite requires Node.js version 20.19+ or 22.12+
+
+If you encounter errors regarding vee-validate/zod run pnpm install
+
 ```sh
 npm install
+
+or
+
+pnpm install
 ```
 
 Start the mock API:
@@ -47,18 +55,6 @@ src/
 ├── types/          # TypeScript definitions
 └── __tests__/      # Unit tests
 ```
-
-**Composition API** - Better TypeScript support and code reusability
-
-**Pinia** - Simpler than Vuex, works well with composition API
-
-**Feature-based components** - Keeps related files together (e.g., `Products/ProductForm/`, `Products/ProductList/`)
-
-**Optimistic updates** - UI updates immediately, rolls back on errors
-
-**Client-side caching** - Reduces API calls, invalidated on mutations
-
-**Vee-validate + Zod** - Type-safe form validation with schema definitions
 
 ## Testing
 
