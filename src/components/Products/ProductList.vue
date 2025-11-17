@@ -34,12 +34,7 @@ onMounted(async () => {
 <template>
   <ProductFilterBar v-if="openFilters && !isMobileOrTablet" @on-close="openFilterBar" />
 
-  <ProductFilterMobile
-    v-if="isMobileOrTablet"
-    v-model:visible="openFilters"
-    position="bottom"
-    @update:sort-by=""
-  />
+  <ProductFilterMobile v-if="isMobileOrTablet" v-model:visible="openFilters" position="bottom" />
 
   <PanelLayout header="Product List">
     <template #icons>
