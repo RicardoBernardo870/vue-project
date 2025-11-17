@@ -25,6 +25,7 @@ const { selectedCategory } = storeToRefs(productStore)
           icon="pi pi-times"
           severity="secondary"
           class="close-button"
+          aria-label="Close filters"
           @click="emit('onClose')"
         />
         <h3>Filters</h3>

@@ -29,7 +29,13 @@ const emit = defineEmits<Emits>()
     </template>
 
     <template #footer>
-      <Button icon="pi pi-trash" severity="danger" size="small" @click="emit('delete', props.id)" />
+      <Button
+        icon="pi pi-trash"
+        severity="danger"
+        size="small"
+        :aria-label="`Delete ${props.name}`"
+        @click="emit('delete', props.id)"
+      />
       <RouterLink :to="`/product/${props.id}`">
         <Button label="View Details" />
       </RouterLink>

@@ -32,7 +32,7 @@ const showBackButton = computed(() => {
   <Toolbar style="padding: 1rem 1rem 1rem 1.5rem">
     <template #start>
       <RouterLink v-if="showBackButton" class="header-button" to="/dashboard">
-        <Button icon="pi pi-arrow-left"></Button>
+        <Button icon="pi pi-arrow-left" aria-label="Go back to dashboard"></Button>
       </RouterLink>
 
       <h3>{{ headerTitle }}</h3>

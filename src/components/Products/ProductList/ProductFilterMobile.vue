@@ -47,6 +47,7 @@ const { selectedCategory, sortBy } = storeToRefs(productStore)
         placeholder="Sort"
         option-label="label"
         option-value="value"
+        aria-label="Sort products"
       />
     </div>
   </ModalComponent>

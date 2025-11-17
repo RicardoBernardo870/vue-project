@@ -32,6 +32,7 @@ const filterNumber = computed(() => {
     severity="info"
     :badge="filterNumber > 0 ? filterNumber.toString() : undefined"
     :label="isMobileOrTablet ? '' : 'Filters'"
+    :aria-label="openFilters ? 'Close filters' : 'Open filters'"
     @click="openFilters = !openFilters"
   />
 
@@ -44,12 +45,14 @@ const filterNumber = computed(() => {
     placeholder="Sort"
     option-label="label"
     option-value="value"
+    aria-label="Sort products"
   />
 
   <Button
     icon="pi pi-plus"
     class="add-product-button"
     :label="isMobile ? '' : 'Add Product'"
+    aria-label="Add new product"
     @click="openModal = !openModal"
   />
 </template>
