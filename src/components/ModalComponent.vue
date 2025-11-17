@@ -23,3 +23,9 @@ const visible = defineModel<boolean>('visible', { required: true })
     <slot></slot>
   </Dialog>
 </template>
+
+<style lang="css">
+.p-dialog-content {
+  overflow: hidden;
+}
+</style>

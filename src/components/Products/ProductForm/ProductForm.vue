@@ -25,7 +25,7 @@ const productStore = useProductStore()
 const { editProduct, addNewProduct } = productStore
 const { categoryOptions } = useProductOptions()
 
-const submitAttempted = ref(false)
+const submitAttempted = ref<boolean>(false)
 const validationSchema = toTypedSchema(ProductFormFields(Zod))
 
 const getInitialValuesComputed = computed(() => {
@@ -75,7 +75,6 @@ watch(
       values: getInitialValues(newProduct),
     })
   },
-  { immediate: true },
 )
 </script>
 
@@ -153,23 +152,11 @@ watch(
   }
 
   .text-input {
-    margin-top: 0.5rem;
-  }
-
-  .p-inputnumber {
-    width: 100%;
-  }
-
-  .p-select {
-    width: 100%;
-  }
-
-  .p-textarea {
-    width: 100%;
+    margin-top: 0.1rem;
   }
 
   .p-button {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     align-self: flex-end;
   }
 

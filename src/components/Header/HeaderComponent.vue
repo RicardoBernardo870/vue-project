@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import Toolbar from 'primevue/toolbar'
-import Button from 'primevue/button'
+import { Toolbar, Button } from 'primevue'
 import { useRouter } from 'vue-router'
 import { computed } from 'vue'
 
