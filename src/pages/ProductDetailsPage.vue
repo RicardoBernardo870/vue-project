@@ -32,7 +32,7 @@ onMounted(async () => {
 <style lang="css" scoped>
 .product-details-page {
   padding: 1rem;
-  width: 50%;
+  width: 60%;
   margin: 0 auto;
 
   @media (max-width: 600px) {

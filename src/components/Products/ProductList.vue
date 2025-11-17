@@ -1,23 +1,23 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 import { useProductStore } from '@/stores/useProductStore'
-import { ProgressSpinner, Select } from 'primevue'
-import { useProductOptions } from '@/composables/useProductOptions'
+import { ProgressSpinner } from 'primevue'
+import { useBreakpoints } from '@/composables/useBreakpoints'
 import { storeToRefs } from 'pinia'
 
 import PanelLayout from '@/layouts/PanelLayout.vue'
 import ProductFilterBar from './ProductFilterBar.vue'
-import Button from 'primevue/button'
 import ProductCard from './ProductCard.vue'
 import ModalComponent from '../ModalComponent.vue'
 import ProductForm from './ProductForm/ProductForm.vue'
+import ProductActions from './ProductActions.vue'
+import ProductFilterMobile from './ProductFilterMobile.vue'
 
 const productStore = useProductStore()
 
 const { getProductList, deleteProduct } = productStore
-const { sortedProducts, isLoading, sortBy, selectedCategory } = storeToRefs(productStore)
-
-const { sortOptions } = useProductOptions()
+const { sortedProducts, isLoading, selectedCategory } = storeToRefs(productStore)
+const { isMobileOrTablet } = useBreakpoints()
 
 const openFilters = ref<boolean>(selectedCategory.value.length > 0)
 const openModal = ref<boolean>(false)
@@ -32,33 +32,18 @@ onMounted(async () => {
 </script>
 
 <template>
-  <ProductFilterBar v-show="openFilters" @on-close="openFilterBar" />
+  <ProductFilterBar v-if="openFilters && !isMobileOrTablet" @on-close="openFilterBar" />
+
+  <ProductFilterMobile
+    v-if="isMobileOrTablet"
+    v-model:visible="openFilters"
+    position="bottom"
+    @update:sort-by=""
+  />
 
   <PanelLayout header="Product List">
     <template #icons>
-      <Button
-        :icon="openFilters ? 'pi pi-filter-slash' : 'pi pi-filter'"
-        severity="info"
-        label="Filters"
-        @click="openFilters = !openFilters"
-      />
-
-      <Select
-        v-model="sortBy"
-        class="sort-select"
-        show-clear
-        :options="sortOptions"
-        placeholder="Sort"
-        option-label="label"
-        option-value="value"
-      />
-
-      <Button
-        icon="pi pi-plus"
-        class="add-product-button"
-        label="Add Product"
-        @click="openModal = !openModal"
-      />
+      <ProductActions v-model:openModal="openModal" v-model:openFilters="openFilters" />
     </template>
 
     <div v-if="!isLoading && sortedProducts.length" class="product-grid">
@@ -81,7 +66,7 @@ onMounted(async () => {
     <div v-else class="empty-state">No products found.</div>
   </PanelLayout>
 
-  <ModalComponent v-model:visible="openModal">
+  <ModalComponent v-model:visible="openModal" header="Add Product">
     <ProductForm mode="create" />
   </ModalComponent>
 </template>
@@ -98,11 +83,6 @@ onMounted(async () => {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.sort-select {
-  width: 250px;
-  margin-left: 1rem;
 }
 
 .add-product-button {

@@ -14,13 +14,7 @@ const emit = defineEmits<Emits>()
 const productStore = useProductStore()
 
 const { categoryOptions } = useProductOptions()
-const { resetFilters } = productStore
 const { selectedCategory } = storeToRefs(productStore)
-
-const closeFilterBar = () => {
-  emit('onClose')
-  resetFilters()
-}
 </script>
 
 <template>
@@ -32,7 +26,7 @@ const closeFilterBar = () => {
           icon="pi pi-times"
           severity="secondary"
           class="close-button"
-          @click="closeFilterBar"
+          @click="emit('onClose')"
         />
         <h3>Filters</h3>
       </template>

@@ -115,15 +115,12 @@ export const useProductStore = defineStore('productStore', () => {
 
     try {
       await api.delete(`/products/${id}`)
+
+      showToast('success', 'Delete', 'Product deleted successfully')
     } catch (err) {
       products.value = prev
       throw err
     }
-  }
-
-  const resetFilters = () => {
-    selectedCategory.value = []
-    sortBy.value = ''
   }
 
   return {
@@ -138,6 +135,5 @@ export const useProductStore = defineStore('productStore', () => {
     getProductById,
     deleteProduct,
     editProduct,
-    resetFilters,
   }
 })

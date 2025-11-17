@@ -81,17 +81,20 @@ watch(
 
 <template>
   <form class="product-form" @submit.prevent="onSubmit">
-    <label for="name">Product Name:*</label>
+    <label for="product-name">Product Name*:</label>
     <InputText
+      id="product-name"
       class="text-input"
       :invalid="!!showError(ProductForm.NAME)"
       :model-value="values[ProductForm.NAME]"
       @update:model-value="setFieldValue(ProductForm.NAME, $event || '')"
     />
+
     <span class="error-message">{{ showError(ProductForm.NAME) }}</span>
 
-    <label for="price">Price:</label>
+    <label for="price">Price*:</label>
     <InputNumber
+      id="price"
       mode="decimal"
       showButtons
       class="text-input"
@@ -99,10 +102,12 @@ watch(
       :model-value="values[ProductForm.PRICE]"
       @update:model-value="setFieldValue(ProductForm.PRICE, $event || 0)"
     />
+
     <span class="error-message">{{ showError(ProductForm.PRICE) }}</span>
 
-    <label for="category">Category:</label>
+    <label for="category">Category*:</label>
     <Select
+      id="category"
       :options="categoryOptions"
       option-label="label"
       option-value="value"
@@ -111,16 +116,19 @@ watch(
       :model-value="values[ProductForm.CATEGORY]"
       @update:model-value="setFieldValue(ProductForm.CATEGORY, $event || '')"
     />
+
     <span class="error-message">{{ showError(ProductForm.CATEGORY) }}</span>
 
-    <label for="description">Description:</label>
+    <label for="description">Description*:</label>
     <Textarea
+      id="description"
       rows="5"
       cols="30"
       :invalid="!!showError(ProductForm.DESCRIPTION)"
       :model-value="values[ProductForm.DESCRIPTION]"
       @update:model-value="setFieldValue(ProductForm.DESCRIPTION, $event || '')"
     />
+
     <span class="error-message">{{ showError(ProductForm.DESCRIPTION) }}</span>
 
     <Button
