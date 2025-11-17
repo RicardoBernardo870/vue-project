@@ -34,7 +34,7 @@ const closeFilterBar = () => {
           class="close-button"
           @click="closeFilterBar"
         />
-        <h3>Product Filters</h3>
+        <h3>Filters</h3>
       </template>
 
       <template #content>

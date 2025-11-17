@@ -3,13 +3,13 @@ import ProductList from '@/components/Products/ProductList.vue'
 </script>
 
 <template>
-  <section class="main-content">
+  <section class="dashboard">
     <ProductList />
   </section>
 </template>
 
 <style lang="css" scoped>
-.main-content {
+.dashboard {
   height: 100%;
   overflow: auto;
   display: flex;

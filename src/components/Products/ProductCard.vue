@@ -3,7 +3,13 @@ import Card from 'primevue/card'
 import Button from 'primevue/button'
 import type { Product } from '@/types/products'
 
+type Emits = {
+  (e: 'delete', id: number): void
+}
+
 const props = defineProps<Product>()
+
+const emit = defineEmits<Emits>()
 </script>
 
 <template>
@@ -24,7 +30,7 @@ const props = defineProps<Product>()
     </template>
 
     <template #footer>
-      <Button icon="pi pi-trash" severity="danger" size="small" />
+      <Button icon="pi pi-trash" severity="danger" size="small" @click="emit('delete', props.id)" />
       <RouterLink :to="`/product/${props.id}`">
         <Button label="View Details" />
       </RouterLink>

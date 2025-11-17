@@ -1,24 +1,58 @@
 <script lang="ts" setup>
 import { useProductStore } from '@/stores/useProductStore'
-import { onMounted, ref } from 'vue'
-import type { Product } from '../types/products'
+import { useRoute } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import { onMounted } from 'vue'
+
+import ProductForm from '@/components/Products/ProductForm/ProductForm.vue'
 import PanelLayout from '@/layouts/PanelLayout.vue'
 
-const { getProductById } = useProductStore()
+const productStore = useProductStore()
+const route = useRoute()
 
-const product = ref<Product | undefined>(undefined)
+const { product } = storeToRefs(productStore)
+const { getProductById } = productStore
 
-onMounted(() => {
-  product.value = getProductById(1)
+onMounted(async () => {
+  await getProductById(Number(route.params.id))
 })
 </script>
 
 <template>
-  <PanelLayout v-if="product" :header="product.name">
-    <div class="product-details">
-      <p>Category: {{ product.category }}</p>
-      <p>Price: ${{ product.price.toFixed(2) }}</p>
-      <p>Description: {{ product.description }}</p>
-    </div>
-  </PanelLayout>
+  <div class="product-details-page">
+    <PanelLayout :header="product?.name">
+      <p>Here you can edit the product details.</p>
+      <div class="product-details">
+        <ProductForm :product="product" mode="edit" />
+      </div>
+    </PanelLayout>
+  </div>
 </template>
+
+<style lang="css" scoped>
+.product-details-page {
+  padding: 1rem;
+  width: 50%;
+  margin: 0 auto;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+}
+.product-details {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-weight: bold;
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+
+  .text-input {
+    margin-bottom: 1rem;
+  }
+}
+</style>

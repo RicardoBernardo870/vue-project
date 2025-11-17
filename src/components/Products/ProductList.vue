@@ -9,15 +9,22 @@ import PanelLayout from '@/layouts/PanelLayout.vue'
 import ProductFilterBar from './ProductFilterBar.vue'
 import Button from 'primevue/button'
 import ProductCard from './ProductCard.vue'
+import ModalComponent from '../ModalComponent.vue'
+import ProductForm from './ProductForm/ProductForm.vue'
 
 const productStore = useProductStore()
 
-const { getProductList } = productStore
-const { sortedProducts, isLoading, sortBy } = storeToRefs(productStore)
+const { getProductList, deleteProduct } = productStore
+const { sortedProducts, isLoading, sortBy, selectedCategory } = storeToRefs(productStore)
 
 const { sortOptions } = useProductOptions()
 
-const openFilters = ref<boolean>(false)
+const openFilters = ref<boolean>(selectedCategory.value.length > 0)
+const openModal = ref<boolean>(false)
+
+const openFilterBar = () => {
+  openFilters.value = !openFilters.value
+}
 
 onMounted(async () => {
   await getProductList()
@@ -25,12 +32,14 @@ onMounted(async () => {
 </script>
 
 <template>
-  <ProductFilterBar v-show="openFilters" @on-close="openFilters = false" />
+  <ProductFilterBar v-show="openFilters" @on-close="openFilterBar" />
 
   <PanelLayout header="Product List">
     <template #icons>
       <Button
         :icon="openFilters ? 'pi pi-filter-slash' : 'pi pi-filter'"
+        severity="info"
+        label="Filters"
         @click="openFilters = !openFilters"
       />
 
@@ -43,6 +52,13 @@ onMounted(async () => {
         option-label="label"
         option-value="value"
       />
+
+      <Button
+        icon="pi pi-plus"
+        class="add-product-button"
+        label="Add Product"
+        @click="openModal = !openModal"
+      />
     </template>
 
     <div v-if="!isLoading && sortedProducts.length" class="product-grid">
@@ -54,6 +70,7 @@ onMounted(async () => {
         :price="product.price"
         :category="product.category"
         :description="product.description"
+        @delete="deleteProduct($event)"
       />
     </div>
 
@@ -63,12 +80,16 @@ onMounted(async () => {
 
     <div v-else class="empty-state">No products found.</div>
   </PanelLayout>
+
+  <ModalComponent v-model:visible="openModal">
+    <ProductForm mode="create" />
+  </ModalComponent>
 </template>
 
 <style lang="css">
 .product-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1rem;
 }
 
@@ -82,5 +103,10 @@ onMounted(async () => {
 .sort-select {
   width: 250px;
   margin-left: 1rem;
+}
+
+.add-product-button {
+  margin-bottom: 1rem;
+  margin-left: 2rem;
 }
 </style>
