@@ -5,13 +5,13 @@ import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 const router = useRouter()
+const route = useRoute()
 const routerReady = ref<boolean>(false)
 
 router.isReady().then(() => {
   routerReady.value = true
 })
 
-const route = useRoute()
 const showHeader = computed(() => route.meta.hideHeader !== true)
 </script>
 

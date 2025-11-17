@@ -3,6 +3,7 @@ import useApi from '@/services/api'
 import type { Product } from '../types/products'
 import { computed, ref } from 'vue'
 import { useToast } from 'primevue'
+import router from '@/router'
 
 export const useProductStore = defineStore('productStore', () => {
   const api = useApi()
@@ -75,6 +76,8 @@ export const useProductStore = defineStore('productStore', () => {
       product.value = response.data
     } catch (error) {
       console.error(`Error fetching product with id ${id}:`, error)
+      showToast('error', 'Error', 'Product not found')
+      router.push({ name: 'dashboard' })
       return null
     }
   }
