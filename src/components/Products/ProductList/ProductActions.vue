@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { Button, Select } from 'primevue'
 import { storeToRefs } from 'pinia'
 
 import { useProductOptions } from '@/composables/useProductOptions'
 import { useBreakpoints } from '@/composables/useBreakpoints'
 import { useProductStore } from '@/stores/useProductStore'
-import { computed } from 'vue'
 
 const productStore = useProductStore()
 const { sortBy, selectedCategory } = storeToRefs(productStore)

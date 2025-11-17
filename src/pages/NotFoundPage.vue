@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
-import Button from 'primevue/button'
+import { Button } from 'primevue'
 
 const router = useRouter()
 </script>

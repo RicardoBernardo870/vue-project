@@ -77,6 +77,7 @@ export const useProductStore = defineStore('productStore', () => {
     } catch (error) {
       console.error(`Error fetching product with id ${id}:`, error)
       showToast('error', 'Error', 'Product not found')
+
       router.push({ name: 'dashboard' })
       return null
     }

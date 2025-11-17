@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import HeaderComponent from '@/components/Header/HeaderComponent.vue'
 import { Toast } from 'primevue'
 import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+
+import HeaderComponent from '@/components/Header/HeaderComponent.vue'
 
 const router = useRouter()
 const route = useRoute()

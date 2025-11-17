@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import Card from 'primevue/card'
 import { useProductOptions } from '@/composables/useProductOptions'
-import { Button, Checkbox } from 'primevue'
-import { storeToRefs } from 'pinia'
 import { useProductStore } from '@/stores/useProductStore'
+import { Button, Checkbox, Card } from 'primevue'
+import { storeToRefs } from 'pinia'
 
 type Emits = {
   (e: 'onClose'): void
