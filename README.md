@@ -8,6 +8,9 @@ For the data layer, I used JSON Server to simulate real API calls, and added bas
 
 For the UI, I chose PrimeVue as a small challenge and to work with ready-made components. I also decided not to use Tailwind so I could focus on writing my own vanilla CSS and show how I handle styling and layout from scratch.
 
+EDIT: For the API i used a first version on api.ts, i changed it and created a dedicated productService file so all the api calls for products are centralized there
+and cleaned the store a little from toast responsabilities. Instead of calling api.ts it just calls the service it needs to execute the requests, its a more future proof way, if there was a BE i would implement openApi its great to work with because it types the BE documentation from swagger and its very robust 
+
 ## Stack
 
 - Vue 3 + TypeScript
