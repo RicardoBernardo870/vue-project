@@ -1,14 +1,9 @@
 import { defineStore } from 'pinia'
-import useApi from '@/services/api'
+import { productService } from '@/services/productService'
 import type { Product } from '../types/products'
 import { computed, ref } from 'vue'
-import { useToast } from 'primevue'
-import router from '@/router'
 
 export const useProductStore = defineStore('productStore', () => {
-  const api = useApi()
-  const toast = useToast()
-
   const products = ref<Product[]>([])
   const product = ref<Product | null>(null)
   const selectedCategory = ref<string[]>([])
@@ -47,21 +42,13 @@ export const useProductStore = defineStore('productStore', () => {
     }
   })
 
-  const showToast = (severity: 'success' | 'error', summary: string, detail: string) => {
-    toast.add({ severity, summary, detail, life: 3000 })
-  }
-
   const getProductList = async () => {
+    if (products.value.length > 0) return
+
+    isLoading.value = true
+
     try {
-      if (products.value.length > 0) return
-
-      isLoading.value = true
-
-      const response = await api.get('/products')
-
-      products.value = response.data as Product[]
-    } catch (error) {
-      console.error('Error fetching product list:', error)
+      products.value = await productService.getAll()
     } finally {
       isLoading.value = false
     }
@@ -69,61 +56,47 @@ export const useProductStore = defineStore('productStore', () => {
 
   const getProductById = async (id: number) => {
     const cached = products.value.find((p) => p.id === id)
-    if (cached) return (product.value = cached)
-
-    try {
-      const response = await api.get(`/products/${id}`)
-      product.value = response.data
-    } catch (error) {
-      console.error(`Error fetching product with id ${id}:`, error)
-      showToast('error', 'Error', 'Product not found')
-
-      router.push({ name: 'dashboard' })
-      return null
+    if (cached) {
+      product.value = cached
+      return cached
     }
+
+    product.value = await productService.getById(id)
+    return product.value
   }
 
   const editProduct = async (productId: number, updatedProduct: Product) => {
     const prevProducts = [...products.value]
 
+    products.value = products.value.map((p) => (p.id === productId ? updatedProduct : p))
+    product.value = updatedProduct
+
     try {
-      products.value = products.value.map((p) => (p.id === productId ? updatedProduct : p))
-      product.value = updatedProduct
+      const updated = await productService.update(productId, updatedProduct)
 
-      await api.patch(`/products/${productId}`, updatedProduct)
-      showToast('success', 'Success', 'Product updated successfully')
-    } catch (error) {
+      return updated
+    } catch (e) {
       products.value = prevProducts
-
-      showToast('error', 'Error', 'Failed to update product')
-      throw error
+      throw e
     }
   }
 
-  const addNewProduct = async (newProduct: Product) => {
-    try {
-      const { data } = await api.post('/products', newProduct)
-
-      products.value.push(data as Product)
-
-      showToast('success', 'Success', 'Product added successfully')
-    } catch (error) {
-      showToast('error', 'Error', 'Failed to add product')
-      throw error
-    }
+  const addNewProduct = async (newProduct: Omit<Product, 'id'>) => {
+    const created = await productService.create(newProduct)
+    products.value.push(created)
+    return created
   }
 
   const deleteProduct = async (id: number) => {
-    const prev = products.value
-    products.value = prev.filter((p) => p.id !== id)
+    const prev = [...products.value]
+
+    products.value = products.value.filter((p) => p.id !== id)
 
     try {
-      await api.delete(`/products/${id}`)
-
-      showToast('success', 'Delete', 'Product deleted successfully')
-    } catch (err) {
+      await productService.delete(id)
+    } catch (e) {
       products.value = prev
-      throw err
+      throw e
     }
   }
 

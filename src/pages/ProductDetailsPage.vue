@@ -1,20 +1,28 @@
 <script lang="ts" setup>
 import { useProductStore } from '@/stores/useProductStore'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue'
+import { useToast } from 'primevue'
 
 import ProductForm from '@/components/Products/ProductForm/ProductForm.vue'
 import PanelLayout from '@/layouts/PanelLayout.vue'
 
 const productStore = useProductStore()
 const route = useRoute()
+const router = useRouter()
+const toast = useToast()
 
 const { product } = storeToRefs(productStore)
 const { getProductById } = productStore
 
 onMounted(async () => {
-  await getProductById(Number(route.params.id))
+  try {
+    await getProductById(Number(route.params.id))
+  } catch (error) {
+    toast.add({ severity: 'error', summary: 'Error', detail: 'Product not found', life: 3000 })
+    router.push({ name: 'dashboard' })
+  }
 })
 </script>
 

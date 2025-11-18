@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
 import { useProductStore } from '@/stores/useProductStore'
-import { ProgressSpinner } from 'primevue'
+import { ProgressSpinner, useToast } from 'primevue'
 import { useBreakpoints } from '@/composables/useBreakpoints'
 import { storeToRefs } from 'pinia'
 
@@ -14,13 +14,36 @@ import ProductActions from './ProductActions.vue'
 import ProductFilterMobile from './ProductFilterMobile.vue'
 
 const productStore = useProductStore()
+const toast = useToast()
 
-const { getProductList, deleteProduct } = productStore
+const { getProductList, deleteProduct: deleteProductFromStore } = productStore
 const { sortedProducts, isLoading } = storeToRefs(productStore)
 const { isMobileOrTablet } = useBreakpoints()
 
 const openFilters = ref<boolean>(false)
 const openModal = ref<boolean>(false)
+
+const deleteProduct = async (id: number) => {
+  try {
+    await deleteProductFromStore(id)
+
+    toast.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Product deleted successfully',
+      life: 3000,
+    })
+  } catch (error) {
+    console.error('Failed to delete product:', error)
+
+    toast.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'Failed to delete product',
+      life: 3000,
+    })
+  }
+}
 
 const openFilterBar = () => {
   openFilters.value = !openFilters.value
