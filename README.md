@@ -51,7 +51,7 @@ src/
 ├── pages/          # Route components
 ├── stores/         # Pinia stores
 ├── composables/    # Reusable composition functions
-├── services/       # API calls
+├── services/       # Centralized API layer
 ├── types/          # TypeScript definitions
 └── __tests__/      # Unit tests
 ```
