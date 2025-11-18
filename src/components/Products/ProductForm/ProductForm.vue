@@ -8,6 +8,7 @@ import { toTypedSchema } from '@vee-validate/zod'
 import type { Product } from '@/types/products'
 import { useProductOptions } from '@/composables/useProductOptions'
 import { ProductFormFields, ProductForm, getInitialValues } from './ProductForm'
+import { useToast } from 'primevue'
 
 import Zod from 'zod'
 import router from '@/router'
@@ -25,6 +26,7 @@ const props = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
 const route = useRoute()
+const toast = useToast()
 
 const productStore = useProductStore()
 
@@ -50,9 +52,23 @@ const onSubmit = handleSubmit(
     try {
       if (props.mode === 'edit') {
         await editProduct(Number(route.params.id), values)
+        toast.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Product updated successfully',
+          life: 3000,
+        })
+
         await router.push('/dashboard')
       } else {
         await addNewProduct(values)
+        toast.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'Product added successfully',
+          life: 3000,
+        })
+
         emit('success')
       }
 
@@ -63,6 +79,13 @@ const onSubmit = handleSubmit(
       submitAttempted.value = false
     } catch (error) {
       console.error('Form submission error:', error)
+
+      toast.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: props.mode === 'edit' ? 'Failed to update product' : 'Failed to add product',
+        life: 3000,
+      })
     }
   },
   () => {

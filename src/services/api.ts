@@ -1,24 +1,16 @@
-import axios, { type AxiosResponse } from 'axios'
-import type ApiEndpoints from './apiEndpoints'
-import type { Product } from '@/types/products'
+import axios, { type AxiosError } from 'axios'
 
-const axiosInstance = axios.create({
-  baseURL: 'http://localhost:3000/',
+export const apiClient = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000',
+  headers: {
+    'Content-Type': 'application/json',
+  },
 })
 
-const useApi = () => ({
-  get: <K extends keyof ApiEndpoints>(url: K): Promise<AxiosResponse<ApiEndpoints[K]>> =>
-    axiosInstance.get(url),
-  post: <K extends keyof ApiEndpoints>(
-    url: K,
-    data?: Product,
-  ): Promise<AxiosResponse<ApiEndpoints[K]>> => axiosInstance.post(url, data),
-  patch: <K extends keyof ApiEndpoints>(
-    url: K,
-    data?: Product,
-  ): Promise<AxiosResponse<ApiEndpoints[K]>> => axiosInstance.patch(url, data),
-  delete: <K extends keyof ApiEndpoints>(url: K): Promise<AxiosResponse<ApiEndpoints[K]>> =>
-    axiosInstance.delete(url),
-})
-
-export default useApi
+apiClient.interceptors.response.use(
+  (response) => response,
+  (error: AxiosError) => {
+    console.error('API Error:', error.response?.data || error.message)
+    return Promise.reject(error)
+  },
+)
